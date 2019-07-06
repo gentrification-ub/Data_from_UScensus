@@ -6,28 +6,36 @@
 # =============================================================================
 '''
 The aim of this file is to reproduce the population data that is indicated in the document, Buffalo Turning the corner,
-for the neighborhood, Elicott Neighborhood.
+for the neighborhood, Ellicott Neighborhood.
 Once reproduced, all the data will be turned into csv files for visualization
 '''
 import json
 import requests
 
-
-
-
-api_key = '3fad1f7c603dfb341edd045495a58a7c0e77f15c' #My API key
+# =============================================================================
+api_key = '3fad1f7c603dfb341edd045495a58a7c0e77f15c' # API key
 parameters = {"key": api_key}
-api_base_url = lambda year :'https://api.census.gov/data/' + year + '/acs/acs5?' #API call link
-response =requests.get(api_base_url("2016"), params = parameters)
+api_base_url = lambda acs_year: 'https://api.census.gov/data/' + acs_year + '/acs/acs5?' # API call link
+# ==============================================================================
 
+# ================================================
+# POPULATION VULNERABLE TO HOUSING DISPLACEMENT ==
+# ================================================
+
+'''for year in range(2009, 2017):
+    response =requests.get(api_base_url(str(year)), params = parameters)
+    json = response.json 
+    # percent black 
+    
+'''
 parameters.update( {"get": "B02001_003E,NAME"} )
 
 #ELICOTT NEIGHBORHOOD ACCORDING TO BUFFALO TURNING THE CORNER
 parameters.update( {"for":"block group:1,2,4", "in": "state:36+county:029+tract:001402"} )
 
 response = requests.get(api_base_url('2016'), params = parameters)
-json = response.content
-print(api_base_url('2019'))
+json = response.json()
+print(json[3])
 '''
 print( "Population of African American: \n" + response.content.decode("utf-8"))
 print("Total of black: 1461")
