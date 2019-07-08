@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Data_from_UScensus$ElicottData.coverage" NAME="ElicottData Coverage Results" MODIFIED="1562581290386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_from_UScensus$ElicottData.coverage" NAME="ElicottData Coverage Results" MODIFIED="1562582932708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_from_UScensus$PopulationData.coverage" NAME="PopulationData Coverage Results" MODIFIED="1562390825140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -45,14 +45,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="csv" value="4" />
-          <entry key="py" value="6576" />
-          <entry key="txt" value="96" />
+          <entry key="py" value="6653" />
+          <entry key="txt" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="100" />
-          <entry key="Python" value="6576" />
+          <entry key="PLAIN_TEXT" value="104" />
+          <entry key="Python" value="6653" />
         </counts>
       </usages-collector>
     </session>
@@ -74,12 +74,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ElicottData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-421">
-              <caret line="71" column="75" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+            <state relative-caret-position="225">
+              <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
               <folding>
                 <element signature="e#516#526#0" expanded="true" />
-                <marker date="1562581290254" expanded="true" signature="635:636" ph="..." />
-                <marker date="1562581290254" expanded="true" signature="2009:2058" ph="..." />
+                <marker date="1562582932701" expanded="true" signature="635:636" ph="..." />
+                <marker date="1562582932701" expanded="true" signature="2009:2058" ph="..." />
               </folding>
             </state>
           </provider>
@@ -88,7 +88,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UBgentrification_data.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-816" />
+            <state relative-caret-position="-255" />
           </provider>
         </entry>
       </file>
@@ -233,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562580879735</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- still missing percentages&#10;- data totals are added onto the csv">
+      <created>1562581601585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562581601585</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -295,19 +302,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ElicottData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-421">
-          <caret line="71" column="75" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+        <state relative-caret-position="225">
+          <caret line="89" column="38" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
           <folding>
             <element signature="e#516#526#0" expanded="true" />
-            <marker date="1562581290254" expanded="true" signature="635:636" ph="..." />
-            <marker date="1562581290254" expanded="true" signature="2009:2058" ph="..." />
+            <marker date="1562582932701" expanded="true" signature="635:636" ph="..." />
+            <marker date="1562582932701" expanded="true" signature="2009:2058" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UBgentrification_data.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816" />
+        <state relative-caret-position="-255" />
       </provider>
     </entry>
   </component>

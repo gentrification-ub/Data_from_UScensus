@@ -56,6 +56,7 @@ def ACScalculate_percent(variable_sample, variable_total,year, num_block = 3):
 
 variables = {"Total population": "B01003_001E",
              # race
+             "Total number of person(only Black or African American)": "B02001_003E",
              "Total number of person(only White)": "B02001_002E",
              "Total number of person(only Hisapnic)": "B03002_012E",
              # household type
@@ -102,7 +103,7 @@ with open('UBgentrification_data.csv', mode='w') as data:
                 data_blockGrp = json[block][4]
                 data_writer.writerow(["blank", var_title, var_data, data_tract, data_blockGrp, year])
 
-parameters.update( {"get": "C17002_001E"} ) # till 18
+parameters.update( {"get": "B02001_003E"} ) # till 18
 
 
 
