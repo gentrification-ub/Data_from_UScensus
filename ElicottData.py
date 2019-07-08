@@ -38,11 +38,18 @@ def ACScalculate_percent(variable_sample, variable_total,year, num_blockGrp = 3)
  '''
 
 variables = {"Total population": "B01003_001E",
+             # race
              "Total number of person(only White)": "B02001_002E",
              "Total number of person(only Hisapnic": "B01001I_001E",
              # household type
-             "Total Tenure by Occupants per room": "B25020_001E",
-             "Total Tenure by Ovv": "B25020_012E",}
+             "Total Number of Housing Units": "B25001_001E",
+             "Total Number of Renter per housing unit": "B25003_003E",
+             "Total Number of Vacant Housing Units": "B25002_003E",
+             # poverty
+             "Total ratio of income to poverty (population whose poverty level is determined)": "C17002_001E",
+             "Total below povery line (population whose poverty level is determined)": ["C17002_002E", "C17002_003E"],}
+             # gross rent as income
+             #"Total percentages of gross rent as income "
 
 
 
@@ -50,9 +57,6 @@ variables = {"Total population": "B01003_001E",
 
 
 
-
-var_NumRoom_For_vacancy = "B25004_001E"
-Total_room_For_rent = "B25004_002E"
 var_percentage_grossRentasIncome =  "B25071_001E"
 
 # Poverty level
@@ -78,11 +82,11 @@ for year in range(2013, 2017):
     
 '''
 
-parameters.update( {"get": "B25020_001E,B25014_001E"} ) # till 18
+parameters.update( {"get": "B25071_001E"} ) # till 18
 
 #ELICOTT NEIGHBORHOOD ACCORDING TO BUFFALO TURNING THE CORNER
 
 
 response = requests.get(api_base_url('2016'), params = parameters)
-json = response.json()
-print(json[1])
+json = response.content.decode("utf-8")
+print(json)
