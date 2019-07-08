@@ -14,32 +14,75 @@ import requests
 
 # =============================================================================
 api_key = '3fad1f7c603dfb341edd045495a58a7c0e77f15c' # API key
-parameters = {"key": api_key}
+# The parameters are set to have my API key and the geography level down to the block level of Ellicott neighborhood
+parameters = {"key": api_key, "for":"block group:1,2,4", "in": "state:36+county:029+tract:001402"}
 api_base_url = lambda acs_year: 'https://api.census.gov/data/' + acs_year + '/acs/acs5?' # API call link
 # ==============================================================================
+'''
+def ACScalculate_percent(variable_sample, variable_total,year, num_blockGrp = 3):
+    
+    @assumes that 
+    :param variable_sample: 
+    :param variable_total: 
+    :return: 
+    if isinstance(variable_sample, list): 
+        for var in variable_sample: 
+            parameters.update( {"get": var +  ","  + variable_total})
+            response = requests.get(api_base_url(str(year)), params = parameters) 
+            json = response.json()
+            for i in range(1,num_blockGrp):
+                total_var_count =+ json[i][0]
+        return total_var 
+    parameters.update( {"get": variable_sample +  ","  + variable_total})
+    response = requests.get(api_base_url(str(year)), params = parameters) # edit these parameters later need to put a if NONe
+ '''
 
-# ================================================
-# POPULATION VULNERABLE TO HOUSING DISPLACEMENT ==
-# ================================================
+variables = {"Total population": "B01003_001E",
+             "Total number of person(only White)": "B02001_002E",
+             "Total number of person(only Hisapnic": "B01001I_001E",
+             # household type
+             "Total Tenure by Occupants per room": "B25020_001E",
+             "Total Tenure by Ovv": "B25020_012E",}
 
-'''for year in range(2009, 2017):
-    response =requests.get(api_base_url(str(year)), params = parameters)
-    json = response.json 
-    # percent black 
+
+
+
+
+
+
+
+var_NumRoom_For_vacancy = "B25004_001E"
+Total_room_For_rent = "B25004_002E"
+var_percentage_grossRentasIncome =  "B25071_001E"
+
+# Poverty level
+
+Total_raioIncome_toPoverty = "C17002_001E"
+var_RIPL_BelowPovertyLine = ["C17002_002E", "C17002_003E"]
+
+
+# Educational attainment
+
+#Total_educational_attainmenmtPopAge25Over = "B15003_001E"
+var_LessThanCollege = ["B15003_00" + str(i) + "E" for i in range(2, 19)]
+
+
+'''
+for year in range(2013, 2017):
+    
+        % black, % Hispanic Ethnicity, % renter, 
+        % of gross rent as income, % vacant
+    
+    
+    json = response.json
     
 '''
-parameters.update( {"get": "B02001_003E,NAME"} )
+
+parameters.update( {"get": "B25020_001E,B25014_001E"} ) # till 18
 
 #ELICOTT NEIGHBORHOOD ACCORDING TO BUFFALO TURNING THE CORNER
-parameters.update( {"for":"block group:1,2,4", "in": "state:36+county:029+tract:001402"} )
+
 
 response = requests.get(api_base_url('2016'), params = parameters)
 json = response.json()
-print(json[3])
-'''
-print( "Population of African American: \n" + response.content.decode("utf-8"))
-print("Total of black: 1461")
-parameters.update( {"get": "B02001_001E,NAME"} )
-print( "Total Population: \n" + response.content.decode("utf-8"))
-print("Total of population: 1644\n" + "Percent of black in these places: " +  str((1461/1644) * 100))
-#["19798228","New York","36"], '''
+print(json[1])
