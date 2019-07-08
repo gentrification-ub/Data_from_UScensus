@@ -69,7 +69,8 @@ variables = {"Total population": "B01003_001E",
              "Total Median Gross Rent As A Percentage Of Household Income In The Past 12 Months (Dollars)":
                                                                                                     "B25071_001E",
              # educational attainment
-             "Total Population over 25 years and over that have less than a college education":
+             "Total Population that is 25 years and older ": "B15003_001E",
+             "Total Population 25 years and older that have less than a college education":
                     ["B15003_0" + str(i).zfill(2) + "E" for i in range(2, 19)]}
 
 
