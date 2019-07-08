@@ -47,44 +47,20 @@ variables = {"Total population": "B01003_001E",
              "Total Number of Vacant Housing Units": "B25002_003E",
              # poverty
              "Total ratio of income to poverty (population whose poverty level is determined)": "C17002_001E",
-             "Total below povery line (population whose poverty level is determined)": ["C17002_002E", "C17002_003E"],}
+             "Total below povery line (population whose poverty level is determined)": ["C17002_002E", "C17002_003E"],
              # gross rent as income
-             #"Total percentages of gross rent as income "
+             "Total Median Gross Rent As A Percentage Of Household Income In The Past 12 Months (Dollars)":
+                                                                                                    "B25071_001E",
+             # educational attainment
+             "Total Population over 25 years and over that have less than a college education":
+                                                                    ["B15003_00" + str(i) + "E" for i in range(2, 19)]}
 
 
 
 
-
-
-
-var_percentage_grossRentasIncome =  "B25071_001E"
-
-# Poverty level
-
-Total_raioIncome_toPoverty = "C17002_001E"
-var_RIPL_BelowPovertyLine = ["C17002_002E", "C17002_003E"]
-
-
-# Educational attainment
-
-#Total_educational_attainmenmtPopAge25Over = "B15003_001E"
-var_LessThanCollege = ["B15003_00" + str(i) + "E" for i in range(2, 19)]
-
-
-'''
-for year in range(2013, 2017):
-    
-        % black, % Hispanic Ethnicity, % renter, 
-        % of gross rent as income, % vacant
-    
-    
-    json = response.json
-    
-'''
 
 parameters.update( {"get": "B25071_001E"} ) # till 18
 
-#ELICOTT NEIGHBORHOOD ACCORDING TO BUFFALO TURNING THE CORNER
 
 
 response = requests.get(api_base_url('2016'), params = parameters)
