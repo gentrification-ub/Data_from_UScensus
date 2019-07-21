@@ -53,19 +53,15 @@ def main():
 
 
 
-    '''
-    -This calculates the percentages on a block level , then puts them into a csv file
-    file header when writing onto a csv: 
-        | Geography (block group #)| Percent of the variable compared to the total | Variables.. 
-    '''
-    counter = 0
+    # This calculates the percentages on a block level , then puts them into a csv file
     with open('UBgentrification_data.csv', mode='w') as data:
         data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+        # headers
         block_list = ["Block"]
         tract_list = ["tract"]
         var_list = []
         for var_title, var_code in variables.items():
-            data_list = [] # ini
+            data_list = [] # this is for variables that needed accumulation of data
             year = 2016
             # calculates whether there are multiple variables that needed to be added to get the whole percentage
             if isinstance(var_code, list): #checks if the pair is a list
@@ -83,21 +79,15 @@ def main():
 
             var_data = [var_title] # the is inside the for loop since it needs to keep adding variables onto the header
 
-
             for block in range(1, len(json)):
                 var_data.append(json[block][0] if len(data_list) == 0 else data_list[block-1])
                 tract_list.append(json[block][3]) if len(tract_list) <= num_blocks else None
-                block_list.append(json[block][4]) if len(block_list) <= num_blocks else None
+                block_list.append(json[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
 
             var_list.append(var_data)
 
-
-
         result =  zip_longest(tract_list,block_list,*var_list,fillvalue= 'None')
-
-        for row in result:
-            data_writer.writerow(row)
-
+        data_writer.writerows(result)
         data.close()
     '''parameters.update( {"get": "B02001_003E"} ) # till 18
     
