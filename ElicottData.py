@@ -23,7 +23,7 @@ api_base_url = lambda acs_year: 'https://api.census.gov/data/' + acs_year + '/ac
 # ==============================================================================
 
 def update_response_parameters(dict_param ,base_url): # returns response
-    parameters.update(dict_param )
+    parameters.update(dict_param)
     response = requests.get(url=base_url, params=parameters)
     return response.json()
 
@@ -64,29 +64,25 @@ def main():
             data_list = [] # this is for variables that needed accumulation of data
             year = 2016
             # calculates whether there are multiple variables that needed to be added to get the whole percentage
-            if isinstance(var_code, list): #checks if the pair is a list
-                data_list = [0] * num_blocks # initializes the array to zero so that it can accumulate totals
+            if isinstance(var_code, list):  # checks if the pair is a list
+                data_list = [0] * num_blocks  # initializes the array to zero so that it can accumulate totals
                 for codes in var_code:
-                    parameters.update( {"get": codes } )
-                    response = requests.get( url= api_base_url(str(year)), params=parameters)
-                    json = response.json()
-                    for block_count in range(1, len(json)): # it starts at 1 because that's after the header
-                        data_list[block_count-1] += int(json[block_count][0])
+                    json_data = update_response_parameters(dict_param={"get": codes}, base_url=api_base_url(str(year)))
+                    for block_count in range(1, len(json_data)):  # it starts at 1 because that's after the header
+                        data_list[block_count-1] += int(json_data[block_count][0])
             else:
-                parameters.update( {"get": var_code})
-                response = requests.get(api_base_url(str(year)), params=parameters)
-                json = response.json()
+                json_data = update_response_parameters(dict_param={"get": var_code}, base_url=api_base_url(str(year)))
 
-            var_data = [var_title] # the is inside the for loop since it needs to keep adding variables onto the header
+            var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
 
-            for block in range(1, len(json)):
-                var_data.append(json[block][0] if len(data_list) == 0 else data_list[block-1])
-                tract_list.append(json[block][3]) if len(tract_list) <= num_blocks else None
-                block_list.append(json[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
+            for block in range(1, len(json_data)):
+                var_data.append(json_data[block][0] if len(data_list) == 0 else data_list[block-1])
+                tract_list.append(json_data[block][3]) if len(tract_list) <= num_blocks else None
+                block_list.append(json_data[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
 
             var_list.append(var_data)
 
-        result =  zip_longest(tract_list,block_list,*var_list,fillvalue= 'None')
+        result = zip_longest(tract_list, block_list, *var_list, fillvalue='None')
         data_writer.writerows(result)
         data.close()
     '''parameters.update( {"get": "B02001_003E"} ) # till 18
