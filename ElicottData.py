@@ -13,7 +13,7 @@ import csv
 import json
 import requests
 from itertools import zip_longest
-
+from functools import partial
 # =============================================================================
 api_key = '3fad1f7c603dfb341edd045495a58a7c0e77f15c'  # API key
 # The parameters are set to have my API key and the geography level down to the block level of Ellicott neighborhood
@@ -58,9 +58,12 @@ def main():
     file header when writing onto a csv: 
         | Geography (block group #)| Percent of the variable compared to the total | Variables.. 
     '''
-    
+    counter = 0
     with open('UBgentrification_data.csv', mode='w') as data:
         data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+        block_list = ["Block"]
+        tract_list = ["tract"]
+        var_list = []
         for var_title, var_code in variables.items():
             data_list = [] # ini
             year = 2016
@@ -77,36 +80,32 @@ def main():
                 parameters.update( {"get": var_code})
                 response = requests.get(api_base_url(str(year)), params=parameters)
                 json = response.json()
-       '''  for year in range(2013,2018):
-            for var_title, var_code in variables.items():
-                data_list = []  # initializing empty list
-                if isinstance(var_code, list):
-                    data_list = [0] * 3
-                    for codes in var_code:
-                        parameters.update({"get": codes})
-                        response = requests.get(api_base_url(str(year)), params=parameters)
-                        json = response.json()
-                        for block_count in range(1, len(json)):
-                            data_list[block_count-1] += int(json[block_count][0])
+
+            var_data = [var_title] # the is inside the for loop since it needs to keep adding variables onto the header
+
+
+            for block in range(1, len(json)):
+                var_data.append(json[block][0] if len(data_list) == 0 else data_list[block-1])
+                tract_list.append(json[block][3]) if len(tract_list) <= num_blocks else None
+                block_list.append(json[block][4]) if len(block_list) <= num_blocks else None
+
+            var_list.append(var_data)
+
+
+
+        result =  zip_longest(tract_list,block_list,*var_list,fillvalue= 'None')
+
+        for row in result:
+            data_writer.writerow(row)
+
+        data.close()
+    '''parameters.update( {"get": "B02001_003E"} ) # till 18
     
-                else:
-                    parameters.update({"get": var_code})
-                    response = requests.get(api_base_url(str(year)), params=parameters)
-                    json = response.json()
-                print(data_list)
-                for block in range(1,len(json)):
-                    var_data = json[block][0] if len(data_list) == 0 else data_list[block-1]
-                    data_tract = json[block][3]
-                    data_blockGrp = json[block][4]
-                    data_writer.writerow(["blank", var_title, var_data, data_tract, data_blockGrp, year]) '''
-
-    parameters.update( {"get": "B02001_003E"} ) # till 18
-
-
-
+    
+    
     response = requests.get(api_base_url('2016'), params = parameters)
-    json = response.content.decode("utf-8")
-    print(json)
+    json = response.content.decode("utf-8")'''
+  #  print(list(result), sep = '\n')
 
 if __name__ == '__main__' :
     main()
