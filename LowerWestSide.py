@@ -1,5 +1,6 @@
 #Author: Jason Yan
 #This file is used to extract data from the US Census, which creates a CSV file named "LowerWestSide_Data.csv"
+
 import csv
 import json
 import requests
@@ -33,8 +34,10 @@ def cleanUpData2(list):
 #Returns a list of codes for education(Age 25 and over + Less than college education)
 def returnCodeForEducation():
     list = []
-    for i in range(2,19):
+    for i in range(2,10):
         list.append("B15003_00"+str(i)+"E")
+    for i in range(10,19):
+        list.append("B15003_0"+str(i)+"E")
     return list
 
 #Returns the url based on year
@@ -48,7 +51,7 @@ def parameterBuilder(json, i):
                       
 def updateGet(code):
     parameters.update({"get":code})
-
+    
 def getBG(json, num):
     for data in json:
         if num in data[4]:
@@ -97,7 +100,13 @@ with open('LowerWestSide_Data.csv', 'w', newline='') as f:
         for var_title,var_code in variables.items():
             print(var_title)
             if isinstance(var_code,list):
-                continue
+                num = 0
+                for x in var_code:
+                    updateGet(x)
+                    print(x)
+                    js = cleanUpData2(requests.get(returnYear(2016), params=parameters))
+                    num = num + int(getBG(js,blockGroupJson[i][4])[0])
+                dataList.append(str(num))
             else:
                 updateGet(var_code)
                 js = cleanUpData2(requests.get(returnYear(2016), params=parameters))
@@ -105,3 +114,4 @@ with open('LowerWestSide_Data.csv', 'w', newline='') as f:
         print(dataList)
         data_writer.writerow(dataList)
     f.close()                
+
