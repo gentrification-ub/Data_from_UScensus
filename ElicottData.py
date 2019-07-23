@@ -87,14 +87,16 @@ def main():
             perc_data = ["Percent " + var_title]
             for block in range(1, len(json_data)):
                 var_data.append(json_data[block][0] if len(data_list) == 0 else data_list[block-1])
-                perc_data.append(
-                    ((float(var_data[len(var_data)-1]) / float(get_total_var_data(var_code, year)[block][0])) * 100)
-                )
+                percent_data = round((float(var_data[len(var_data)-1])
+                                      / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
+                perc_data.append(percent_data)
                 tract_list.append(json_data[block][3]) if len(tract_list) <= num_blocks else None
                 block_list.append(json_data[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
 
             var_list.append(var_data)
-            var_list.append(perc_data)
+            if var_code[-3:] != "001E":
+                var_list.append(perc_data)
+
 
         result = zip_longest(tract_list, block_list, *var_list, fillvalue='None')
         data_writer.writerows(result)
