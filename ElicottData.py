@@ -41,9 +41,10 @@ def main():
                  "Total number of person(only White)": "B02001_002E",
                  "Total number of person(only Hisapnic)": "B03002_012E",
                  # household type
-                 "Total Number of Housing Units": "B25001_001E",
+                 "Total Number of Occupied Housing Units": "B25003_001E",
                  "Total Number of Renter per housing unit": "B25003_003E",
                  "Total Number of Owner per housing unit": "B25003_002E",
+                 "Total Number of Housing Units": "B25001_001E",
                  "Total Number of Vacant Housing Units": "B25002_003E",
 
                  # poverty ...... to get total u subtract the last part yes?
