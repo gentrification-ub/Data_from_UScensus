@@ -1,3 +1,5 @@
+#Author: Jason Yan
+#This file is used to extract data from the US Census, which creates a CSV file named "LowerWestSide_Data.csv"
 import csv
 import json
 import requests
@@ -46,7 +48,7 @@ def parameterBuilder(json, i):
                       
 def updateGet(code):
     parameters.update({"get":code})
-    
+
 def getBG(json, num):
     for data in json:
         if num in data[4]:
@@ -82,7 +84,7 @@ variables = {"Total population": "B01003_001E",
                  "Total Population that is 25 years and older ": "B15003_001E",
                  "Total Population 25 years and older that have less than a college education": returnCodeForEducation()}
 
-with open('UBgentrification_data.csv', 'w', newline='') as f:
+with open('LowerWestSide_Data.csv', 'w', newline='') as f:
     data_writer = csv.writer(f)
     dataList = []
     print("1")
