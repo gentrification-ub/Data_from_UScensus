@@ -56,14 +56,20 @@ def getBG(json, num):
     for data in json:
         if num in data[4]:
             return data
-        
+def getPercentage(code,value,i):
+    code = code[:-3]
+    code = code + "01E"
+    updateGet(code)
+    num = cleanUpData2(requests.get(returnYear(2016), params=parameters))
+    total = getBG(num,blockGroupJson[i][4])[0]
+    return str((float(value)/float(total))*100)[:5]
 api_key = '84921378aea76df28e22b980926c1621f872d5c1' #API Key
 #Lower West Side contains a portion of all block groups in these tracts with no patterns, so we will need to filter our data later
 parameters = {"key": api_key, "get":"NAME","for":"block group:*", "in":"state:36+county:029+tract:006902,007101,007102"} 
 
 #Gets Json of Data 
 #requests.get(api_base_url, params=parameters).json()
-blockGroupJson = cleanUpData(requests.get(api_base_url, params=parameters))
+blockGroupJson = cleanUpData(requests.get(returnYear(2016), params=parameters))
 #Gets number of block groups in the request
 numOfBlockGroups = len(blockGroupJson)
 
@@ -74,10 +80,13 @@ variables = {"Total population": "B01003_001E",
                  "Total number of person(only White)": "B02001_002E",
                  "Total number of person(only Hisapnic)": "B03002_012E",
                  # household type
-                 "Total Number of Housing Units": "B25001_001E",
+                 "Total Number of Occupied Housing Units": "B25003_001E",
                  "Total Number of Renter per housing unit": "B25003_003E",
+                 "Total Number of Owner per housing unit": "B25003_002E",
+                 "Total Number of Housing Units": "B25001_001E",
                  "Total Number of Vacant Housing Units": "B25002_003E",
-                 # poverty
+
+                 # poverty ...... to get total u subtract the last part yes?
                  "Total Population for whom poverty status is determined" : "C17002_001E",
                  "Total below povery line (population whose poverty level is determined)": ["C17002_002E", "C17002_003E"],
                  # gross rent as income
@@ -85,33 +94,57 @@ variables = {"Total population": "B01003_001E",
                                                                                                         "B25071_001E",
                  # educational attainment
                  "Total Population that is 25 years and older ": "B15003_001E",
-                 "Total Population 25 years and older that have less than a college education": returnCodeForEducation()}
+                 "Total Population 25 years and older that have less than a college education": returnCodeForEducation(),
+
+                 # rent/housing price
+
+                 "Total Median contract rent (DOLLARS)": "B25058_001E",
+                 "Total Median Housing values (DOLLARS)": "B25077_001E"}   # / Owner occupied housing units
 
 with open('LowerWestSide_Data.csv', 'w', newline='') as f:
     data_writer = csv.writer(f)
     dataList = []
     print("1")
+    header = []
     for i in range(0,numOfBlockGroups):
         dataList.clear()
         parameterBuilder(blockGroupJson,i)
         print(i)
         dataList.append(blockGroupJson[i][3])
         dataList.append(blockGroupJson[i][4])
-        for var_title,var_code in variables.items():
+        header.append("Tract")
+        header.append("Block Group")
+        for var_title,var_code in variables.items(): #Loops through dictionary
             print(var_title)
             if isinstance(var_code,list):
                 num = 0
                 for x in var_code:
                     updateGet(x)
-                    print(x)
                     js = cleanUpData2(requests.get(returnYear(2016), params=parameters))
                     num = num + int(getBG(js,blockGroupJson[i][4])[0])
                 dataList.append(str(num))
+                if i==0:
+                    header.append(var_title)
+                percentage = getPercentage(var_code[0],num,i)
+                dataList.append(percentage)
+                if i==0:
+                    header.append("Percent of "+var_title)
             else:
                 updateGet(var_code)
                 js = cleanUpData2(requests.get(returnYear(2016), params=parameters))
-                dataList.append(getBG(js,blockGroupJson[i][4])[0])
+                value = getBG(js,blockGroupJson[i][4])[0]
+                dataList.append(value)
+                if i==0:
+                    header.append(var_title)
+                if var_code[8:]!="01E":   
+                    percentage = getPercentage(var_code,value,i)
+                    dataList.append(percentage)
+                    if i==0:
+                        header.append("Percent of "+var_title)
+                    #print(percentage)
+                #print(header)
+        if i==0:
+            data_writer.writerow(header)
         print(dataList)
         data_writer.writerow(dataList)
-    f.close()                
-
+f.close()                
