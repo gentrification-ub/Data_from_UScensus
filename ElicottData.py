@@ -4,13 +4,12 @@
 # Created By  : Voltaire Vergara
 # Created Date: 7/6/2019
 # =============================================================================
-'''
+"""
 The aim of this file is to reproduce the population data that is indicated in the document, Buffalo Turning the corner,
 for the neighborhood, Ellicott Neighborhood.
 Once reproduced, all the data will be turned into csv files for visualization
-'''
+"""
 import csv
-import json
 import requests
 from itertools import zip_longest
 # =============================================================================
@@ -21,6 +20,14 @@ num_blocks = 3
 api_base_url = lambda acs_year: 'https://api.census.gov/data/' + acs_year + '/acs/acs5?'  # API call link
 # ==============================================================================
 def get_total_var_data(var_code,year):
+    """
+    takes in a variable and finds the original base of that variable.
+    For example if the variable is the total of
+    african american population, then it will return the variable code: total population of that area including all race
+    :param var_code: original variable code
+    :param year: year of that variable
+    :return: Total variable code
+    """
     if isinstance(var_code, list):
         new_var_code = var_code[0][:-3]
     else:
@@ -28,6 +35,12 @@ def get_total_var_data(var_code,year):
     new_var_code = new_var_code + "01E"
     return update_response_parameters(dict_param={"get": new_var_code}, base_url=api_base_url(str(year)))
 def update_response_parameters(dict_param ,base_url): # returns response
+    """
+    updates the parameters of api request to grab any variable that is needed
+    :param dict_param: a dictionary that contains all the geographic and variable parameters
+    :param base_url: the base url to call the api from
+    :return: returns a json of all the data from the api request with the specific parameters
+    """
     parameters.update(dict_param)
     response = requests.get(url=base_url, params=parameters)
     return response.json()
@@ -102,12 +115,7 @@ def main():
         result = zip_longest(tract_list, block_list, *var_list, fillvalue='None')
         data_writer.writerows(result)
         data.close()
-    '''parameters.update( {"get": "B02001_003E"} ) # till 18
-    
-    
-    
-    response = requests.get(api_base_url('2016'), params = parameters)
-    json = response.content.decode("utf-8")'''
+
   #  print(list(result), sep = '\n')
 
 if __name__ == '__main__' :
