@@ -19,7 +19,9 @@ parameters = {"key": api_key, "for": "block group:1,2,4", "in": "state:36+county
 num_blocks = 3
 api_base_url = lambda acs_year: 'https://api.census.gov/data/' + acs_year + '/acs/acs5?'  # API call link
 # ==============================================================================
-def get_total_var_data(var_code,year):
+
+
+def get_total_var_data(var_code, year):
     """
     takes in a variable and finds the original base of that variable.
     For example if the variable is the total of
@@ -34,7 +36,9 @@ def get_total_var_data(var_code,year):
         new_var_code = var_code[:-3]
     new_var_code = new_var_code + "01E"
     return update_response_parameters(dict_param={"get": new_var_code}, base_url=api_base_url(str(year)))
-def update_response_parameters(dict_param ,base_url): # returns response
+
+
+def update_response_parameters(dict_param, base_url): # returns response
     """
     updates the parameters of api request to grab any variable that is needed
     :param dict_param: a dictionary that contains all the geographic and variable parameters
@@ -81,7 +85,7 @@ def main():
         data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         # headers
         block_list = ["Block"]
-        tract_list = ["tract"]
+        tract_list = ["Tract"]
         var_list = []
         for var_title, var_code in variables.items():
             data_list = [] # this is for variables that needed accumulation of data
@@ -110,44 +114,12 @@ def main():
             var_list.append(var_data)
             if perc_data is not None:
                 var_list.append(perc_data)
-
-
         result = zip_longest(tract_list, block_list, *var_list, fillvalue='None')
         data_writer.writerows(result)
         data.close()
 
   #  print(list(result), sep = '\n')
 
-if __name__ == '__main__' :
+
+if __name__ == '__main__':
     main()
-'''
-THIS IS TO CALCULATE ON A NEIGHBORHOOD LEVEL 
-
-def ACScalculate_percent(variable_sample, variable_total,year, num_block = 3):
-
-    assumes that 
-    :param variable_sample: 
-    :param variable_total: 
-    :param year 
-    :param num_block
-    :return:
-
-    parameters.update( {"get": variable_sample + "," + variable_total})
-    response = requests.get(api_base_url(str(year)), params=parameters)
-    json = response.json()
-    for i in range(1, num_block):
-        var_count =+ json[i][1] 
-        total_var_count =+ json[i][1] 
-    if isinstance(variable_sample, list): 
-        var_count = 0
-        for var in variable_sample: 
-            parameters.update( {"get": var })
-            response = requests.get(api_base_url(str(year)), params = parameters) 
-            json = response.json()
-            for i in range(1,num_block):
-                var_count =+ json[i][0]
-
-    else:
-
-    return (var_count / total_var_count) * 100
-'''
