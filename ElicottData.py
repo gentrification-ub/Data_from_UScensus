@@ -101,7 +101,7 @@ def main():
                 json_data = update_response_parameters(dict_param={"get": var_code}, base_url=api_base_url(str(year)))
 
             var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
-            perc_data = ["Percent " + var_title] if var_code[-3:] != "01E" else None
+            perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
             for block in range(1, len(json_data)):
                 var_data.append(json_data[block][0] if len(data_list) == 0 else data_list[block-1])
                 percent_data = round((float(var_data[len(var_data)-1])
