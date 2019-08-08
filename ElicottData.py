@@ -103,7 +103,7 @@ def main():
             var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
             perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
             for block in range(1, len(json_data)):
-                var_data.append(json_data[block][0] if len(data_list) == 0 else data_list[block-1])
+                var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
                 percent_data = round((float(var_data[len(var_data)-1])
                                       / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
                 if perc_data is not None:

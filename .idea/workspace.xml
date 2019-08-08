@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4527b6b2-cb03-40a9-b451-6d614c816a8c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/plot-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/plot-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElicottData.py" beforeDir="false" afterPath="$PROJECT_DIR$/ElicottData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBgentrification_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UBgentrification_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Median Gross Rent As A Percentage Of Household Income In The Past 12 Months (Dollars) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Median Gross Rent As A Percentage Of Household Income In The Past 12 Months (Dollars) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Median Housing values (DOLLARS) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Median Housing values (DOLLARS) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Median contract rent (DOLLARS) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Median contract rent (DOLLARS) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Number of Housing Units 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Number of Housing Units 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Number of Occupied Housing Units 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Number of Occupied Housing Units 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Number of Owner per housing unit 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Number of Owner per housing unit 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Number of Renter per housing unit 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Number of Renter per housing unit 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Number of Vacant Housing Units 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Number of Vacant Housing Units 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Population 25 years and older that have less than a college education 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Population 25 years and older that have less than a college education 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Population for whom poverty status is determined 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Population for whom poverty status is determined 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total Population that is 25 years and older 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total Population that is 25 years and older 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total below povery line (population whose poverty level is determined) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total below povery line (population whose poverty level is determined) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total number of person(only Black or African American) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total number of person(only Black or African American) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total number of person(only Black or African American)_x 2016.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total number of person(only Hisapnic) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total number of person(only Hisapnic) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total number of person(only White) 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total number of person(only White) 2016.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Total population 2016.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Total population 2016.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/plot.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,7 +30,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Data_from_UScensus$ElicottData.coverage" NAME="ElicottData Coverage Results" MODIFIED="1563894557084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_from_UScensus$ElicottData.coverage" NAME="ElicottData Coverage Results" MODIFIED="1565222380605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_from_UScensus$PopulationData.coverage" NAME="PopulationData Coverage Results" MODIFIED="1562390825140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_from_UScensus$LowerWestSide.coverage" NAME="LowerWestSide Coverage Results" MODIFIED="1564808449825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -21,7 +38,7 @@
     <session id="-939228335">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.32" value="1" />
@@ -29,9 +46,10 @@
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.49" value="2" />
           <entry key="project.open.time.52" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -54,14 +72,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="csv" value="4" />
-          <entry key="py" value="10788" />
+          <entry key="py" value="10825" />
           <entry key="txt" value="308" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="312" />
-          <entry key="Python" value="10788" />
+          <entry key="Python" value="10825" />
         </counts>
       </usages-collector>
     </session>
@@ -83,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ElicottData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+            <state relative-caret-position="102">
+              <caret line="105" column="37" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="37" />
               <folding>
                 <element signature="e#516#526#0" expanded="true" />
               </folding>
@@ -95,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LowerWestSide.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2193" />
+            <state relative-caret-position="-1951" />
           </provider>
         </entry>
       </file>
@@ -104,23 +122,23 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LowerWestSide_Data.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UBgentrification_data.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
           <provider selected="true" editor-type-id="csv-text-editor">
             <state relative-caret-position="119">
               <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
-          </provider>
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
         </entry>
       </file>
@@ -159,6 +177,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,7 +189,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -191,7 +209,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.LowerWestSide">
+  <component name="RunManager" selected="Python.ElicottData">
     <configuration name="ElicottData" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Data_from_UScensus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -265,8 +283,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.LowerWestSide" />
         <item itemvalue="Python.ElicottData" />
+        <item itemvalue="Python.LowerWestSide" />
         <item itemvalue="Python.PopulationData" />
       </list>
     </recent_temporary>
@@ -360,12 +378,12 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1096823" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11119516" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4969743" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -373,7 +391,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030257" side_tool="true" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49621785" weight="0.17540984" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3295082" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -438,43 +456,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UBgentrification_data.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/LowerWestSide_Data.csv">
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-        </state>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LowerWestSide.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1951" />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LWS_Graph.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/ElicottData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+        <state relative-caret-position="102">
+          <caret line="105" column="37" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="37" />
           <folding>
             <element signature="e#516#526#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LowerWestSide.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2193" />
+    <entry file="file://$PROJECT_DIR$/UBgentrification_data.csv">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LWS_Graph.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LowerWestSide_Data.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
       </provider>
     </entry>
   </component>
