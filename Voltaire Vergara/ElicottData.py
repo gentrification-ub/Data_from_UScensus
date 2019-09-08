@@ -84,38 +84,39 @@ def main():
     with open('UBgentrification_data.csv', mode='w') as data:
         data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         # headers
+        year_list = ["Year"]
         block_list = ["Block"]
         tract_list = ["Tract"]
         var_list = []
-        for var_title, var_code in variables.items():
-            data_list = [] # this is for variables that needed accumulation of data
-            year = 2016
-            # calculates whether there are multiple variables that needed to be added to get the whole percentage
-            if isinstance(var_code, list):  # checks if the pair is a list
-                data_list = [0] * num_blocks  # initializes the array to zero so that it can accumulate totals
-                for codes in var_code:
-                    json_data = update_response_parameters(dict_param={"get": codes}, base_url=api_base_url(str(year)))
-                    for block_count in range(1, len(json_data)):  # it starts at 1 because that's after the header
-                        data_list[block_count-1] += int(json_data[block_count][0])
-            else:
-                json_data = update_response_parameters(dict_param={"get": var_code}, base_url=api_base_url(str(year)))
+        for year in range(2013, 2017):
+            for var_title, var_code in variables.items():
+                data_list = [] # this is for variables that needed accumulation of data
+                # calculates whether there are multiple variables that needed to be added to get the whole percentage
+                if isinstance(var_code, list):  # checks if the pair is a list
+                    data_list = [0] * num_blocks  # initializes the array to zero so that it can accumulate totals
+                    for codes in var_code:
+                        json_data = update_response_parameters(dict_param={"get": codes}, base_url=api_base_url(str(year)))
+                        for block_count in range(1, len(json_data)):  # it starts at 1 because that's after the header
+                            data_list[block_count-1] += int(json_data[block_count][0])
+                else:
+                    json_data = update_response_parameters(dict_param={"get": var_code}, base_url=api_base_url(str(year)))
 
-            var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
-            perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
-            for block in range(1, len(json_data)):
-                var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
-                percent_data = round((float(var_data[len(var_data)-1])
-                                      / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
+                var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
+                perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
+                for block in range(1, len(json_data)):
+                    var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
+                    percent_data = round((float(var_data[len(var_data)-1])
+                                          / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
+                    if perc_data is not None:
+                        perc_data.append(percent_data)
+                    tract_list.append(json_data[block][3]) if len(tract_list) <= num_blocks else None
+                    block_list.append(json_data[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
+                    year_list.append(year)
+                var_list.append(var_data)
                 if perc_data is not None:
-                    perc_data.append(percent_data)
-                tract_list.append(json_data[block][3]) if len(tract_list) <= num_blocks else None
-                block_list.append(json_data[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
-
-            var_list.append(var_data)
-            if perc_data is not None:
-                var_list.append(perc_data)
-        result = zip_longest(tract_list, block_list, *var_list, fillvalue='None')
-        data_writer.writerows(result)
+                    var_list.append(perc_data)
+            result = zip_longest(year_list, tract_list, block_list, *var_list, fillvalue='None')
+            data_writer.writerows(result)
         data.close()
 
   #  print(list(result), sep = '\n')
