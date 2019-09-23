@@ -13,7 +13,7 @@ import csv
 import requests
 from itertools import zip_longest
 # =============================================================================
-api_key = '3fad1f7c603dfb341edd045495a58a7c0e77f15c'  # API key
+api_key = '29a7a4c8e02a8284f63e32523530ee0237fc03cc'  # API key
 # The parameters are set to have my API key and the geography level down to the block level of Ellicott neighborhood
 parameters = {"key": api_key, "for": "block group:1,2,4", "in": "state:36+county:029+tract:001402"}
 num_blocks = 3
@@ -46,7 +46,12 @@ def update_response_parameters(dict_param, base_url): # returns response
     :return: returns a json of all the data from the api request with the specific parameters
     """
     parameters.update(dict_param)
-    response = requests.get(url=base_url, params=parameters)
+
+    # complications with acs api
+    header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x86) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132'}
+    response = requests.get(url=base_url, params=parameters, headers=header)
+
+    response.raise_for_status()
     return response.json()
 
 def main():
@@ -81,16 +86,20 @@ def main():
                  "Total Median Housing values (DOLLARS)": "B25077_001E"}   # / Owner occupied housing units
 
     # This calculates the percentages on a block level , then puts them into a csv file
-    with open('UBgentrification_data.csv', mode='w') as data:
-        data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
-        # headers
-        year_list = ["Year"]
-        block_list = ["Block"]
-        tract_list = ["Tract"]
-        var_list = []
-        for year in range(2013, 2017):
+    for years in range(2013,2018):
+        with open('Gentrification_data/UBgentrification_data-' + str(years) + '.csv', mode='w', newline= '') as data:
+            data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+            # headers
+            year_list = ["Year"]
+            block_list = ["Block"]
+            tract_list = ["Tract"]
+            var_list = []
+
+            year = years
+
             for var_title, var_code in variables.items():
                 data_list = [] # this is for variables that needed accumulation of data
+
                 # calculates whether there are multiple variables that needed to be added to get the whole percentage
                 if isinstance(var_code, list):  # checks if the pair is a list
                     data_list = [0] * num_blocks  # initializes the array to zero so that it can accumulate totals
@@ -104,20 +113,23 @@ def main():
                 var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
                 perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
                 for block in range(1, len(json_data)):
-                    var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
-                    percent_data = round((float(var_data[len(var_data)-1])
-                                          / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
+                    year_list.append(year)
+                    if json_data[block][0] is not None:
+                        var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
+                        percent_data = round((float(var_data[len(var_data)-1])
+                                             / float(get_total_var_data(var_code, year)[block][0])) * 100, 2)
+                    else: perc_data = None
                     if perc_data is not None:
                         perc_data.append(percent_data)
                     tract_list.append(json_data[block][3]) if len(tract_list) <= num_blocks else None
                     block_list.append(json_data[block][4]) if len(block_list) <= num_blocks else None # !! THESE ARE ONLY ADDED CUZ THERES NO YEARS
-                    year_list.append(year)
+
                 var_list.append(var_data)
                 if perc_data is not None:
                     var_list.append(perc_data)
-            result = zip_longest(year_list, tract_list, block_list, *var_list, fillvalue='None')
+            result = zip_longest(year_list,tract_list, block_list, *var_list, fillvalue='None')
             data_writer.writerows(result)
-        data.close()
+            data.close()
 
   #  print(list(result), sep = '\n')
 
