@@ -91,6 +91,7 @@ def main():
             data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
             # headers
             year_list = ["Year"]
+            [year_list.append(years) for _ in range(0, num_blocks)]
             block_list = ["Block"]
             tract_list = ["Tract"]
             var_list = []
@@ -113,7 +114,7 @@ def main():
                 var_data = [var_title]  # the is inside the for loop since it needs to keep adding variables onto the header
                 perc_data = ["Percent " + var_title[6:]] if var_code[-3:] != "01E" else None
                 for block in range(1, len(json_data)):
-                    year_list.append(year)
+
                     if json_data[block][0] is not None:
                         var_data.append(float(json_data[block][0]) if len(data_list) == 0 else float(data_list[block-1]))
                         percent_data = round((float(var_data[len(var_data)-1])
